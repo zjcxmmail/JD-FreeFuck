@@ -1,8 +1,16 @@
-## 重要通知：
-__2021/1/24__\
-__由于原作者更改了帮助文档，从而导致本人的`run-all.sh`一键执行脚本失效，24日前已部署的朋友请执行一键更新命令：__
+__如果您觉得这个项目不错的话可以在右上角给颗小星星吗？方便分享给更多的朋友吗？ (∩_∩)__
 
-    bash <(curl -L https://raw.githubusercontent.com/SuperManito/JD-FreeFuck/main/manual-update.sh)
+***
+
+## 通知：
+__2021/1/27__\
+__项目失效，原因未知，作者失联，原项目Github网站均已无法访问，现已无法部署，已部署的用户不受影响。__\
+\
+__2021/1/24__\
+__由于原作者更改了帮助文档，从而导致本人的`run-all.sh`一键执行脚本失效，24日前已部署的朋友请执行更新脚本，命令在下方第四步`使用与更新`中的第3条。__\
+\
+__2021/1/16__\
+__由于原作者lxk0301大佬的Github库被封，收到[ 通知 ](https://github.com/EvineDeng/jd-base/issues/234)，请16号前已部署的朋友删除`/jd`目录后重新一键部署。__
 
 ***
 
@@ -28,10 +36,10 @@ __由于原作者更改了帮助文档，从而导致本人的`run-all.sh`一键
 
     __基于Debian系列 `Ubuntu | Debian | Kali`__
 
-      bash <(curl -L https://raw.githubusercontent.com/SuperManito/JD-FreeFuck/main/install-debians.sh)
+      bash <(curl -sL https://raw.githubusercontent.com/SuperManito/JD-FreeFuck/main/install-debians.sh)
     __基于RedHat系列 `CentOS | Fedora`__
 
-      bash <(curl -L https://raw.githubusercontent.com/SuperManito/JD-FreeFuck/main/install-redhats.sh)
+      bash <(curl -sL https://raw.githubusercontent.com/SuperManito/JD-FreeFuck/main/install-redhats.sh)
     _注：请根据你的操作系统，选择上面对应的命令复制到终端并执行_
 - 附1. 如果提示`Command 'curl' not found`则说明当前未安装`curl`软件包，安装命令如下：
 
@@ -49,12 +57,14 @@ __由于原作者更改了帮助文档，从而导致本人的`run-all.sh`一键
     
 ***
 
-## 二、接下来我们需要您京东账户的“身份证”，它由`Cookie部分内容`组成，在[ Wiki ](https://github.com/SuperManito/JD-FreeFuck/wiki/GetCookies)有详细的图文教程，请点击链接自行获取
+## 二、接下来我们需要您京东账户的“身份证”，它由`Cookie部分内容`组成，下面是获取途径：
+__1. 在[ Wiki ](https://github.com/SuperManito/JD-FreeFuck/wiki/GetCookies)有详细的图文教程，请点击链接自行获取，此方式获取的Cookie只有1个月有效期。__\
+__2. 通过通过下方`控制面板`功能部署后进入浏览器网页手机扫码获取，此方式获取的Cookie有效期为3个月。__
 
 ***
 
 ## 三、配置信息
-### 根据[ Wiki ](https://github.com/SuperManito/JD-FreeFuck/wiki/GetCookies)教程将获得的`Cookie部分内容`填入下面命令中的“双引号”内，复制完整命令到终端并执行。（必填）
+### 将获得的`Cookie部分内容`填入下面命令中的“双引号”内，复制完整命令到终端并执行。（必填）
     sed -i '27c Cookie1=""' /home/myid/jd/config/config.sh
   _参考命令：sed -i '27c Cookie1="pt_pin=xxxxx;pt_key=xxxxxxx;"' /home/myid/jd/config/config.sh_
 - 附1. 该项目可同时运行多个账号（最多6个），请按顺序填入下面命令中的“双引号”内，用几个就执行几条对应的命令，复制完整命令到终端并执行：
@@ -69,7 +79,7 @@ __由于原作者更改了帮助文档，从而导致本人的`run-all.sh`一键
       sed -i '70c export PUSH_KEY=""' /home/myid/jd/config/config.sh
 - 附3. 如果需要使用[ 控制面板 ](https://github.com/EvineDeng/jd-base/wiki/Panel)功能，安装命令如下：
 
-      bash <(curl -L https://raw.githubusercontent.com/SuperManito/JD-FreeFuck/main/install-panel.sh)
+      bash <(curl -sL https://raw.githubusercontent.com/SuperManito/JD-FreeFuck/main/install-panel.sh)
     _注：此功能可用于在浏览器编辑配置文件、配置定时运行脚本、自定义脚本等功能，脚本安装后已默认启动。_
 
 ***
@@ -83,10 +93,10 @@ __友情提示：获取更多功能请访问[ /EvineDeng/jd-base/wiki/Linux](htt
 
       bash manual-update.sh
     _注：建议每次运行活动脚本前执行一次，京东活动经常变化，原作者更新也很频繁。_
-- 3.如何更新一键更新脚本？
+- 3.如何更新一键脚本？
 
-      bash <(curl -L https://raw.githubusercontent.com/SuperManito/JD-FreeFuck/main/manual-update.sh)
-    _注：适用于后期维护，当需要更新时会在本人项目置顶通知。_
+      bash <(curl -sL https://raw.githubusercontent.com/SuperManito/JD-FreeFuck/main/update.sh)
+    _注：适用于后期维护更新，当先前一键脚本失效需要更新时会在项目置顶通知。_
     
 ***
 
@@ -96,7 +106,7 @@ __友情提示：获取更多功能请访问[ /EvineDeng/jd-base/wiki/Linux](htt
 
 - __此项目原作者GitHub网址链接：__
 - [lxk0301/jd_scripts](https://github.com/lxk0301/jd_scripts)  #此项目核心JavaScript京东活动脚本作者
-- [EvineDeng/jd-base](https://github.com/EvineDeng/jd-base)   #此项目Linux环境Shell套壳作者，在其项目[ Issues ](https://github.com/EvineDeng/jd-base/issues/185)有分帖   
+- [EvineDeng/jd-base](https://github.com/LXK9301/jd_scripts)   #此项目Linux环境Shell套壳作者，在其项目[ Issues ](https://github.com/EvineDeng/jd-base/issues/185)有分帖   
     
 ***
 
@@ -109,8 +119,9 @@ __友情提示：获取更多功能请访问[ /EvineDeng/jd-base/wiki/Linux](htt
 6. 如果需要更新核心JavaScript活动脚本，请执行 bash manual-update.sh 命令进行一键更新即可
 7. 之前填入的Cookie部分内容具有一定的时效性，若提示失效请根据教程重新获取并通过命令手动更新
 8. 因为本人每天也在使用，遇到错误会在第一时间解决，遇到任何与部署相关的问题都可访问本项目寻求帮助
-## 如果您有意见与建议欢迎到 [Issuse](https://github.com/SuperManito/JD-FreeFuck/issues) 反馈
 
 ***
 
-__如果您觉得这个项目不错的话可以在右上角给颗小星星吗？方便分享给更多的朋友吗？ (∩_∩)__
+## 如果您有意见与建议欢迎到 [Issuse](https://github.com/SuperManito/JD-FreeFuck/issues) 反馈
+## 如果老板成功薅到羊毛，赏1元可否(∩_∩)
+<img src="https://a1.qpic.cn/psc?/V50n9XtX0l0n6J3udmyK2gRcEx1lPmFH/ruAMsa53pVQWN7FLK88i5m6GsPj*rJQrKSo6N9UFZGC1BHFpPrrRaDcpZz.ySsybH7kPVI1SDrOmO1SVGbzEgP*3kd0m0SctQXeeBRZE3iA!/b&ek=1&kp=1&pt=0&bo=6QTpBOkE6QQDEDU!&tl=1&vuin=1808077397&tm=1611579600&sce=60-1-1&rf=viewer_311" width="330" height="330" alt="微信赞赏码"/><br/>
