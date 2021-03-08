@@ -1,6 +1,6 @@
 #!/bin/env bash
 ## Author:SuperManito
-## Modified:2021-3-7
+## Modified:2021-3-8
 
 ## ======================================== 说 明 =========================================================
 ##                                                                                                        #
@@ -183,6 +183,11 @@ function ProjectDeployment() {
     ## 创建目录
     mkdir $BASE/config
     mkdir $BASE/log
+    ## 创建软链接
+    ln -sf $BASE/jd.sh /usr/local/bin/jd
+    ln -sf $BASE/git_pull.sh /usr/local/bin/git_pull
+    ln -sf $BASE/rm_log.sh /usr/local/bin/rm_log
+    ln -sf $BASE/export_sharecodes.sh /usr/local/bin/export_sharecodes
     ## 根据安装目录配置定时任务
     sed -i "s#BASE#$BASE#g" $BASE/sample/computer.list.sample
     ## 创建项目配置文件与定时任务配置文件
@@ -196,12 +201,12 @@ function ProjectDeployment() {
     npm install || npm install --registry=https://registry.npm.taobao.org
     npm install -g pm2
     pm2 start server.js
-    cd $BASE
     ## 拉取活动脚本
-    bash $BASE/git_pull.sh
-    bash $BASE/git_pull.sh >/dev/null 2>&1
+    cd $BASE
+    bash git_pull.sh
+    bash git_pull.sh >/dev/null 2>&1
     ## 赋权所有项目文件
-    chmod 777 $BASE/*
+    chmod 777 *
 }
 
 ## 更改配置文件：
@@ -312,7 +317,7 @@ function UseNotes() {
     echo -e "\033[32m |                                                                                                                 | \033[0m"
     echo -e "\033[32m |       如果想要执行特定活动脚本，请通过命令 bash jd.sh 查看教程                                                  | \033[0m"
     echo -e "\033[32m |                                                                                                                 | \033[0m"
-    echo -e "\033[32m | 注意：1. 该项目文件以及一键脚本的安装目录为$BASE                                                                | \033[0m"
+    echo -e "\033[32m | 注意：1. 该项目文件以及一键脚本的安装目录为$BASE                                                              | \033[0m"
     echo -e "\033[32m |                                                                                                                 | \033[0m"
     echo -e "\033[32m |       2. 为了保证脚本的正常运行，请不要更改任何组件的位置以避免出现未知的错误                                   | \033[0m"
     echo -e "\033[32m |                                                                                                                 | \033[0m"
