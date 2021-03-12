@@ -1,6 +1,6 @@
 #!/bin/env bash
 ## Author:SuperManito
-## Modified:2021-3-9
+## Modified:2021-3-11
 
 ## ======================================== 说 明 =========================================================
 ##                                                                                                        #
@@ -178,14 +178,18 @@ function PrivateKeyInstallation() {
 
 ## 项目部署：
 function ProjectDeployment() {
+    ## 卸载旧版本
+    rm -rf $BASE
+    rm -rf /usr/local/bin/jd
+    rm -rf /usr/local/bin/git_pull
+    rm -rf /usr/local/bin/rm_log
+    rm -rf /usr/local/bin/export_sharecodes
+    rm -rf /usr/local/bin/run_all
     ## 克隆源码
     git clone -b $JD_BASE_BRANCH $JD_BASE_URL $BASE
     ## 创建目录
     mkdir $BASE/config
     mkdir $BASE/log
-    ## 定义全局变量
-    echo "export JD_DIR=$BASE" >>/etc/profile
-    source /etc/profile
     ## 根据安装目录配置定时任务
     sed -i "s#BASE#$BASE#g" $BASE/sample/computer.list.sample
     ## 创建项目配置文件与定时任务配置文件
@@ -198,20 +202,19 @@ function ProjectDeployment() {
     cd $BASE/panel
     npm install || npm install --registry=https://registry.npm.taobao.org
     npm install -g pm2
-    pm2 start server.js
+    pm2 start ecosystem.config.js
     ## 拉取活动脚本
-    cd $BASE
-    bash git_pull.sh
-    bash git_pull.sh >/dev/null 2>&1
+    bash $BASE/git_pull.sh
+    bash $BASE/git_pull.sh >/dev/null 2>&1
     ## 创建软链接
     ln -sf $BASE/jd.sh /usr/local/bin/jd
     ln -sf $BASE/git_pull.sh /usr/local/bin/git_pull
     ln -sf $BASE/rm_log.sh /usr/local/bin/rm_log
     ln -sf $BASE/export_sharecodes.sh /usr/local/bin/export_sharecodes
     ln -sf /opt/jd/run_all.sh /usr/local/bin/run_all
-    ## 赋权所有项目文件
-    chmod 777 $BASE/*
-    chmod 777 /usr/local/bin/*
+    ## 定义全局变量
+    echo "export JD_DIR=$BASE" >>/etc/profile
+    source /etc/profile
 }
 
 ## 更改配置文件：
@@ -228,7 +231,7 @@ function SetConfig() {
 function PanelJudgment() {
     netstat -tunlp | grep 5678 -wq
     PanelTestA=$?
-    curl -sSL 127.0.0.1:5678 | grep "京东羊毛脚本控制面板" -wq
+    curl -sSL 127.0.0.1:5678 | grep "京东薅羊毛控制面板" -wq
     PanelTestB=$?
     if [ ${PanelTestA} -eq 0 ] || [ ${PanelTestB} -eq 0 ]; then
         PanelUseNotes
